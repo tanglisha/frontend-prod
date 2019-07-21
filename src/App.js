@@ -39,17 +39,17 @@ function App() {
         >
           {/*Grid items for the hero section*/}
           <Grid item xs={12}>
-            <p className="heroText">What is CyberMate?</p>
+            <h3 className="heroText">What is CyberMate?</h3>
             <p className="heroText">CyberMate is an online video platform for cyber security and technological content</p>
           </Grid>
 
           <Grid item xs={12}>
-            <p className="heroText">Will the project be open source?</p>
+            <h3 className="heroText">Will the project be open source?</h3>
             <p className="heroText">Yes, and it already is! You can find this web page on <a target="_blank" className={classes.heroLink} href="https://github.com/cybermate-tech">our GitHub!</a></p>
           </Grid>
 
           <Grid item xs={12}>
-            <p className="heroText">Can I help contribute to the project?</p>
+            <h3 className="heroText">Can I help contribute to the project?</h3>
             <p className="heroText">Of course! You can join us on <a target="_blank" className={classes.heroLink} href="https://discord.gg/VawZj2F">Discord</a>, and soon we'll be accepting donations through GoFundMe!</p>
           </Grid>
         </Grid>
