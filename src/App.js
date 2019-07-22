@@ -102,6 +102,38 @@ function VideoInfo() {
   );
 }
 
+function VideoInfoTestRow() {
+  return(
+    <Grid
+      container
+      direction="row"
+      justify="center"
+      alignItems="center"
+      spacing={3}
+    >
+      {/*I know it's not pretty, it's temporary*/}
+      <Grid item xs={2}>
+        <VideoInfo />
+      </Grid>
+      <Grid item xs={2}>
+        <VideoInfo />
+      </Grid>
+      <Grid item xs={2}>
+        <VideoInfo />
+      </Grid>
+      <Grid item xs={2}>
+        <VideoInfo />
+      </Grid>
+      <Grid item xs={2}>
+        <VideoInfo />
+      </Grid>
+      <Grid item xs={2}>
+        <VideoInfo />
+      </Grid>
+    </Grid>
+  );
+}
+
 //Main function to render the app as a whole
 function App() {
   const styles = lightTheme();
@@ -114,17 +146,12 @@ function App() {
 
       <Hero />
 
-      <div style={{ background: '#111111' }}>
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-        >
-          <Grid item xs={3}>
-            <VideoInfo />
-          </Grid>
-        </Grid>
+      {/*Section for video information and thumbnails*/}
+      <div style={{ 'padding': '25px'}}>
+        <h3>Trending</h3>
+        <VideoInfoTestRow />
+        <h3>Recommended</h3>
+        <VideoInfoTestRow />
       </div>
 
     </div>

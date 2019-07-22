@@ -1,7 +1,5 @@
-.thumbnail {
-  border-radius: 5px;
-  width: 100%;
-  filter: drop-shadow(0px 2px 10px black);
+* {
+  font-family: 'Courier New' !important;
 }
 
 .logo {
@@ -15,17 +13,8 @@
   padding: 0 30px;
 }
 
-#outer {
-    display: table;
-}
-
-#inner_fixed {
-    height: 100px;
-
-    display: table-row;
-}
-
-#inner_remaining {
-
-    display: table-row;
+.thumbnail {
+  border-radius: 5px;
+  width: 100%;
+  filter: drop-shadow(0px 2px 3px black);
 }
