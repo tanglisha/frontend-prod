@@ -8,6 +8,7 @@ import ThumbnailExample2 from './images/thumbnailExample2.png';
 //Material UI Imports
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,7 +19,8 @@ import Paper from '@material-ui/core/Paper';
 //Other css goes in ./App.css
 
 //Light theme
-const lightTheme = makeStyles({logoText: {
+const lightTheme = makeStyles({
+  logoText: {
     color: '#00ff00',
   },
   topbar: {
@@ -97,8 +99,35 @@ function Hero() {
 function VideoInfo() {
   const styles = lightTheme;
 
-  return(
-    <img class="thumbnail" src={ThumbnailExample2} />
+  return (
+    <Box className="thumbnail_box" display="flex" width="300px"> {/* Main box that limits the size */}
+      <Box display="flex" flexDirection="column" alignItems="center">  {/* Flex box wrapper */}
+
+        <Box p={1} width="100%"> {/** Thumbnail image box */}
+          <img className="thumbnail" width="100%" src={ThumbnailExample2} alt="Thumbnail failed to load" />
+        </Box>
+
+        <Box p={1} display="flex" width="100%"> {/* Video title & view wrapper flew box */}
+          <Box flexGrow={1}>
+            This is a long video title
+          </Box>
+          <Box id="subtitle" justifySelf="flex-end">
+            1337 views
+          </Box>
+        </Box>
+
+        <Box p={1} display="flex" width="100%"> {/* Video author & upload time wrapper flew box */}
+          <Box flexGrow={1}>
+            By: Author
+          </Box>
+          <Box id="subtitle" justifySelf="flex-end">
+            5 days ago
+          </Box>
+        </Box>
+
+      </Box>
+    </Box>
+
   );
 }
 
