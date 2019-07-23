@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './App.css';
 
@@ -6,7 +6,6 @@ import './App.css';
 import ThumbnailExample2 from './images/thumbnailExample2.png';
 
 //Material UI Imports
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/styles';
@@ -83,12 +82,12 @@ function Hero() {
 
         <Grid item xs={12}>
           <h3 className="heroText">Will the project be open source?</h3>
-          <p className="heroText">Yes, and it already is! You can find this web page on <a target="_blank" className={styles.heroLink} href="https://github.com/cybermate-tech">our GitHub!</a></p>
+          <p className="heroText">Yes, and it already is! You can find this web page on <a target="_blank" rel="noopener noreferrer" className={styles.heroLink} href="https://github.com/cybermate-tech">our GitHub!</a></p>
         </Grid>
 
         <Grid item xs={12}>
           <h3 className="heroText">Can I help contribute to the project?</h3>
-          <p className="heroText">Of course! You can join us on <a target="_blank" className={styles.heroLink} href="https://discord.gg/VawZj2F">Discord</a>, and soon we'll be accepting donations through GoFundMe!</p>
+          <p className="heroText">Of course! You can join us on <a target="_blank" rel="noopener noreferrer" className={styles.heroLink} href="https://discord.gg/VawZj2F">Discord</a>, and soon we'll be accepting donations through GoFundMe!</p>
         </Grid>
       </Grid>
     </div>
@@ -132,12 +131,10 @@ function VideoInfo({title, views, author, uploadTime}) {
 }
 
 function VideoInfoTestRow() {
-  const [spacing, setSpacing] = React.useState(2);
-
   var videoInfoCards = [];
   for (var i = 0; i < Math.round(((window.innerWidth - 45)/200)-1); i++) {
     videoInfoCards.push(
-      <div class="flexItem">
+      <div class="flexItem" key={i}>
         <VideoInfo title="Test title" views="666" author="Test author" uploadTime="Yesterday"/>
       </div>
     );
@@ -152,7 +149,7 @@ function VideoInfoTestRow() {
 
 //Main function to render the app as a whole
 function App() {
-  const styles = lightTheme();
+
   return (
     //Root div for the website
     <div className="App">
@@ -163,9 +160,9 @@ function App() {
 
       {/*Section for video information and thumbnails*/}
       <div id="contentSection" style={{ padding: '25px'}}>
-        <h3 style={{ 'padding-left': '10px'}}>Trending</h3>
+        <h3 style={{ paddingLeft: '10px'}}>Trending</h3>
         <VideoInfoTestRow />
-        <h3 style={{ 'padding-left': '10px'}}>Recommended</h3>
+        <h3 style={{ paddingLeft: '10px'}}>Recommended</h3>
         <VideoInfoTestRow />
       </div>
 
