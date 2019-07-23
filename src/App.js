@@ -36,6 +36,9 @@ const lightTheme = makeStyles({
   heroLink: {
     color: 'white',
   },
+  contentSection: {
+    background: 'white',
+  },
   subtitle: {
     color: '#7f7f7f',
   },
@@ -44,7 +47,34 @@ const lightTheme = makeStyles({
   },
 });
 
-//TODO dark theme
+//Dark theme
+const darkTheme = makeStyles({
+  logoText: {
+    color: '#00ff00',
+  },
+  topbar: {
+    background: '#222222',
+  },
+  topbarText: {
+    color: 'black',
+  },
+  hero: {
+    background: '#000000',
+    color: '#00c700',
+  },
+  heroLink: {
+    color: 'white',
+  },
+  contentSection: {
+    background: '#222222',
+  },
+  subtitle: {
+    color: '#d6d6d6',
+  },
+  defaultText: {
+    color: 'white',
+  },
+});
 
 //Renders the navigation bar
 function Topbar({theme}) {
@@ -140,7 +170,7 @@ function VideoInfo({ theme, title, views, author, uploadTime, thumbnail, length 
           <Box flexGrow={1}>
             {title}
           </Box>
-          <Box className={styles.subtitle} justifySelf="flex-end">
+          <Box className={styles.subtitle} class="subtitle" justifySelf="flex-end">
             {views} views
           </Box>
         </Box>
@@ -149,7 +179,7 @@ function VideoInfo({ theme, title, views, author, uploadTime, thumbnail, length 
           <Box flexGrow={1}>
             {author}
           </Box>
-          <Box className={styles.subtitle} justifySelf="flex-end">
+          <Box className={styles.subtitle} class="subtitle" justifySelf="flex-end">
             {uploadTime}
           </Box>
         </Box>
@@ -178,16 +208,29 @@ function VideoInfoTestRow({theme}) {
   );
 }
 
+function ContentSection({theme}) {
+  const styles = theme;
+
+  return (
+    <div className={styles.contentSection} id="contentSection" style={{ padding: '25px' }}>
+      <h3 className={styles.defaultText} style={{ paddingLeft: '10px' }}>Trending</h3>
+      <VideoInfoTestRow theme={styles}/>
+      <h3 className={styles.defaultText} style={{ paddingLeft: '10px' }}>Recommended</h3>
+      <VideoInfoTestRow theme={styles}/>
+    </div>
+  );
+}
+
 //Main function to render the app as a whole
 function App() {
-  
+
   // Checks if the "darkTheme" local key exsists, if not, create it
   if (localStorage.getItem('darkTheme') === null) {
     localStorage.setItem('darkTheme', false);
   }
 
   //If the dark theme is on, set currentTheme to darkTheme, else set it to lightTheme
-  let currentTheme = localStorage.getItem('darkTheme') === "false" ? lightTheme() : lightTheme()/* TODO: replace this by darkTheme when it exists */;
+  let currentTheme = localStorage.getItem('darkTheme') === "false" ? lightTheme() : darkTheme();
 
   return (
     //Root div for the website
@@ -197,13 +240,7 @@ function App() {
 
       <Hero theme={currentTheme}/>
 
-      {/*Section for video information and thumbnails*/}
-      <div id="contentSection" style={{ padding: '25px' }}>
-        <h3 style={{ paddingLeft: '10px' }}>Trending</h3>
-        <VideoInfoTestRow theme={currentTheme}/>
-        <h3 style={{ paddingLeft: '10px' }}>Recommended</h3>
-        <VideoInfoTestRow theme={currentTheme}/>
-      </div>
+      <ContentSection theme={currentTheme}/>
 
     </div>
   );
