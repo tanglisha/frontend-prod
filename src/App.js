@@ -13,6 +13,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import { relative } from 'path';
 
 //Only colour theming goes here
 //Other css goes in ./App.css
@@ -101,7 +102,7 @@ function Hero() {
 }
 
 //Renders a card with info and thumbnail of a video
-function VideoInfo({ title, views, author, uploadTime }) {
+function VideoInfo({ title, views, author, uploadTime, thumbnail, length }) {
   const styles = lightTheme();
 
   if (author.length + uploadTime.length > 30) {
@@ -110,11 +111,14 @@ function VideoInfo({ title, views, author, uploadTime }) {
   }
 
   return (
-    <Box className="thumbnail_box" display="flex" width="200px"> {/* Main box that limits the size */}
+    <Box className="videoInfo_box" display="flex" width="200px"> {/* Main box that limits the size */}
       <Box display="flex" flexDirection="column" alignItems="center" className={styles.defaultText}>  {/* Flex box wrapper */}
 
-        <Box p={1} width="100%"> {/* Thumbnail image box */}
-          <img className="thumbnail" width="100%" src={ThumbnailExample2} alt="Thumbnail failed to load" />
+        <Box p={1} width="100%" className="thumbnail_container"> {/* Thumbnail image box (also contains video length) */}
+          <img className="thumbnail" width="100%" src={thumbnail} alt="Thumbnail failed to load" />
+          <Box class="video_lenght" width="100%">
+            {length}
+          </Box>
         </Box>
 
         <Box id="videoTitle" p={1} display="flex" width="100%"> {/* Video title & view wrapper flew box */}
@@ -146,7 +150,7 @@ function VideoInfoTestRow() {
   for (var i = 0; i < Math.round(((window.innerWidth - 45) / 200) - 1); i++) {
     videoInfoCards.push(
       <div class="flexItem" key={i}>
-        <VideoInfo title="Test title" views="666" author="Test author" uploadTime="Yesterday"/>
+        <VideoInfo title="Test title" views="666" author="Test author" uploadTime="Yesterday" thumbnail={ThumbnailExample2} length="13:37" />
       </div>
     );
   }
@@ -170,10 +174,10 @@ function App() {
       <Hero />
 
       {/*Section for video information and thumbnails*/}
-      <div id="contentSection" style={{ padding: '25px'}}>
-        <h3 style={{ paddingLeft: '10px'}}>Trending</h3>
+      <div id="contentSection" style={{ padding: '25px' }}>
+        <h3 style={{ paddingLeft: '10px' }}>Trending</h3>
         <VideoInfoTestRow />
-        <h3 style={{ paddingLeft: '10px'}}>Recommended</h3>
+        <h3 style={{ paddingLeft: '10px' }}>Recommended</h3>
         <VideoInfoTestRow />
       </div>
 

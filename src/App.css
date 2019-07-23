@@ -30,9 +30,21 @@ img.thumbnail {
   width: 100%;
 }
 
-.thumbnail_box {
+.videoInfo_box {
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.video_lenght {
+  position: absolute;
+  right: 10px;
+  bottom: 15px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 5px; 
+}
+
+.thumbnail_container {
+  position: relative;
 }
 
 #videoTitle, #videoAuthor {
