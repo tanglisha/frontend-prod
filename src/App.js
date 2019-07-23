@@ -147,7 +147,7 @@ function VideoInfo({ title, views, author, uploadTime, thumbnail, length }) {
 
 function VideoInfoTestRow() {
   var videoInfoCards = [];
-  for (var i = 0; i < Math.round(((window.innerWidth - 45) / 200) - 1); i++) {
+  for (var i = 0; i < Math.round(((window.innerWidth - 35 - (10*i)) / 200) - 1); i++) {
     videoInfoCards.push(
       <div class="flexItem" key={i}>
         <VideoInfo title="Test title" views="666" author="Test author" uploadTime="Yesterday" thumbnail={ThumbnailExample2} length="13:37" />
