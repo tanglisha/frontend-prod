@@ -96,7 +96,7 @@ function Hero() {
 }
 
 //TODO renders a card with info and thumbnail of a video
-function VideoInfo() {
+function VideoInfo({title, views, author, uploadTime}) {
   const styles = lightTheme;
 
   return (
@@ -109,19 +109,19 @@ function VideoInfo() {
 
         <Box p={1} display="flex" width="100%"> {/* Video title & view wrapper flew box */}
           <Box flexGrow={1}>
-            This is a long video title
+            {title}
           </Box>
           <Box id="subtitle" justifySelf="flex-end">
-            1337 views
+            {views} views
           </Box>
         </Box>
 
         <Box p={1} display="flex" width="100%"> {/* Video author & upload time wrapper flew box */}
           <Box flexGrow={1}>
-            By: Author
+            By: {author}
           </Box>
           <Box id="subtitle" justifySelf="flex-end">
-            5 days ago
+            {uploadTime}
           </Box>
         </Box>
 
@@ -142,22 +142,22 @@ function VideoInfoTestRow() {
     >
       {/*I know it's not pretty, it's temporary*/}
       <Grid item xs={2}>
-        <VideoInfo />
+        <VideoInfo title="a" author="aa" views="1337" uploadTime="3 years ago" />
       </Grid>
       <Grid item xs={2}>
-        <VideoInfo />
+        <VideoInfo title="a" author="aa" views="1337" uploadTime="3 years ago" />
       </Grid>
       <Grid item xs={2}>
-        <VideoInfo />
+        <VideoInfo title="a" author="aa" views="1337" uploadTime="3 years ago" />
       </Grid>
       <Grid item xs={2}>
-        <VideoInfo />
+        <VideoInfo title="a" author="aa" views="1337" uploadTime="3 years ago" />
       </Grid>
       <Grid item xs={2}>
-        <VideoInfo />
+        <VideoInfo title="a" author="aa" views="1337" uploadTime="3 years ago" />
       </Grid>
       <Grid item xs={2}>
-        <VideoInfo />
+        <VideoInfo title="a" author="aa" views="1337" uploadTime="3 years ago" />
       </Grid>
     </Grid>
   );
@@ -166,7 +166,6 @@ function VideoInfoTestRow() {
 //Main function to render the app as a whole
 function App() {
   const styles = lightTheme();
-
   return (
     //Root div for the website
     <div className="App">
@@ -186,5 +185,7 @@ function App() {
     </div>
   );
 }
+
+
 
 export default App;
