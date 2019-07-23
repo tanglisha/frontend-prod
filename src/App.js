@@ -116,7 +116,7 @@ function VideoInfo({ title, views, author, uploadTime, thumbnail, length }) {
 
         <Box p={1} width="100%" className="thumbnail_container"> {/* Thumbnail image box (also contains video length) */}
           <img className="thumbnail" width="100%" src={thumbnail} alt="Thumbnail failed to load" />
-          <Box class="video_lenght" width="100%">
+          <Box class="video_length" width="100%">
             {length}
           </Box>
         </Box>
