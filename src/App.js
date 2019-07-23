@@ -60,10 +60,25 @@ function Topbar({theme}) {
               CyberMate
             </Typography>
           </Paper>
+          <div className={styles.defaultText} style={{
+            position: 'absolute',
+            right: '10px',
+          }}> {/* Change theme button */}
+            <button onClick={toggleTheme} className={styles.hero} id="toggle_theme">{localStorage.getItem('darkTheme') == 'false' ? 'Dark theme' : 'Light theme'}</button>
+          </div>
         </Toolbar>
       </AppBar>
     </div>
   );
+}
+
+function toggleTheme() {
+  if (localStorage.getItem('darkTheme') == 'false') { // Checks if the dark theme is off
+    localStorage.setItem('darkTheme', true); // Trun it on
+  } else {
+    localStorage.setItem('darkTheme', false); // Turn it off
+  }
+  document.location.reload();
 }
 
 //Renders the hero section
@@ -165,7 +180,14 @@ function VideoInfoTestRow({theme}) {
 
 //Main function to render the app as a whole
 function App() {
-  let currentTheme = lightTheme();
+  
+  // Checks if the "darkTheme" local key exsists, if not, create it
+  if (localStorage.getItem('darkTheme') === null) {
+    localStorage.setItem('darkTheme', false);
+  }
+
+  //If the dark theme is on, set currentTheme to darkTheme, else set it to lightTheme
+  let currentTheme = localStorage.getItem('darkTheme') === "false" ? lightTheme() : lightTheme()/* TODO: replace this by darkTheme when it exists */;
 
   return (
     //Root div for the website
