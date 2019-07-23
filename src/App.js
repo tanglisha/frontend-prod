@@ -36,6 +36,12 @@ const lightTheme = makeStyles({
   heroLink: {
     color: 'white',
   },
+  subtitle: {
+    color: '#7f7f7f',
+  },
+  defaultText: {
+    color: 'black',
+  },
 });
 
 //TODO dark theme
@@ -96,17 +102,17 @@ function Hero() {
 }
 
 //Renders a card with info and thumbnail of a video
-function VideoInfo({title, views, author, uploadTime}) {
-  const styles = lightTheme;
+function VideoInfo({ title, views, author, uploadTime }) {
+  const styles = lightTheme();
 
-  if(author.length + uploadTime.length > 30){
+  if (author.length + uploadTime.length > 30) {
     var extraCharCount = 30 - 3 - author.length - uploadTime.length;
     author = author.substring(0, author.length + extraCharCount) + "...";
   }
 
   return (
     <Box className="thumbnail_box" display="flex" width="200px"> {/* Main box that limits the size */}
-      <Box display="flex" flexDirection="column" alignItems="center">  {/* Flex box wrapper */}
+      <Box display="flex" flexDirection="column" alignItems="center" className={styles.defaultText}>  {/* Flex box wrapper */}
 
         <Box p={1} width="100%"> {/* Thumbnail image box */}
           <img className="thumbnail" width="100%" src={ThumbnailExample2} alt="Thumbnail failed to load" />
@@ -116,7 +122,7 @@ function VideoInfo({title, views, author, uploadTime}) {
           <Box flexGrow={1}>
             {title}
           </Box>
-          <Box id="subtitle" justifySelf="flex-end">
+          <Box className={styles.subtitle} justifySelf="flex-end">
             {views} views
           </Box>
         </Box>
@@ -125,7 +131,7 @@ function VideoInfo({title, views, author, uploadTime}) {
           <Box flexGrow={1}>
             {author}
           </Box>
-          <Box id="subtitle" justifySelf="flex-end">
+          <Box className={styles.subtitle} justifySelf="flex-end">
             {uploadTime}
           </Box>
         </Box>
@@ -140,15 +146,15 @@ function VideoInfoTestRow() {
   const [spacing, setSpacing] = React.useState(2);
 
   var videoInfoCards = [];
-  for (var i = 0; i < Math.round(((window.innerWidth - 45)/200)-1); i++) {
+  for (var i = 0; i < Math.round(((window.innerWidth - 45) / 200) - 1); i++) {
     videoInfoCards.push(
       <div class="flexItem">
-        <VideoInfo title="Test title" views="666" author="Test author" uploadTime="Yesterday"/>
+        <VideoInfo title="Test title" views="666" author="Test author" uploadTime="Yesterday" />
       </div>
     );
   }
 
-  return(
+  return (
     <div class="flexContainer">
       {videoInfoCards}
     </div>
@@ -167,10 +173,10 @@ function App() {
       <Hero />
 
       {/*Section for video information and thumbnails*/}
-      <div id="contentSection" style={{ padding: '25px'}}>
-        <h3 style={{ 'padding-left': '10px'}}>Trending</h3>
+      <div id="contentSection" style={{ padding: '25px' }}>
+        <h3 style={{ 'padding-left': '10px' }}>Trending</h3>
         <VideoInfoTestRow />
-        <h3 style={{ 'padding-left': '10px'}}>Recommended</h3>
+        <h3 style={{ 'padding-left': '10px' }}>Recommended</h3>
         <VideoInfoTestRow />
       </div>
 

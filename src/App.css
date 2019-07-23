@@ -35,12 +35,8 @@ img.thumbnail {
   padding-right: 10px;
 }
 
-#videoTitle, #subtitle, #videoAuthor {
+#videoTitle, #videoAuthor {
   font-size: 11pt;
-}
-
-#subtitle {
-  color: #7f7f7f;
 }
 
 .thumbnail {
