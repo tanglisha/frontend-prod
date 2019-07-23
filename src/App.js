@@ -98,11 +98,16 @@ function Hero() {
 function VideoInfo({title, views, author, uploadTime}) {
   const styles = lightTheme;
 
+  if(author.length + uploadTime.length > 30){
+    var extraCharCount = 30 - 3 - author.length - uploadTime.length;
+    author = author.substring(0, author.length + extraCharCount) + "...";
+  }
+
   return (
     <Box className="thumbnail_box" display="flex" width="200px"> {/* Main box that limits the size */}
       <Box display="flex" flexDirection="column" alignItems="center">  {/* Flex box wrapper */}
 
-        <Box p={1} width="100%"> {/** Thumbnail image box */}
+        <Box p={1} width="100%"> {/* Thumbnail image box */}
           <img className="thumbnail" width="100%" src={ThumbnailExample2} alt="Thumbnail failed to load" />
         </Box>
 
@@ -117,7 +122,7 @@ function VideoInfo({title, views, author, uploadTime}) {
 
         <Box id="videoAuthor" p={1} display="flex" width="100%"> {/* Video author & upload time wrapper flew box */}
           <Box flexGrow={1}>
-            By: {author}
+            {author}
           </Box>
           <Box id="subtitle" justifySelf="flex-end">
             {uploadTime}
