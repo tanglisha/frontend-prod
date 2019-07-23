@@ -3,6 +3,28 @@
   scrollbar-width: none;
 }
 
+.logo {
+  padding-right: 5px;
+  padding-left: 5px;
+  background: black;
+  border-radius: 5px;
+}
+
+.hero {
+  padding: 0 30px;
+}
+
+
+.flexContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flexItem {
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
 img.thumbnail {
   border-radius: 5px;
   width: 100%;
@@ -13,19 +35,12 @@ img.thumbnail {
   padding-right: 10px;
 }
 
+#videoTitle, #subtitle, #videoAuthor {
+  font-size: 11pt;
+}
+
 #subtitle {
   color: #7f7f7f;
-}
-
-.logo {
-  padding-right: 5px;
-  padding-left: 5px;
-  background: black;
-  border-radius: 5px;
-}
-
-.hero {
-  padding: 0 30px;
 }
 
 .thumbnail {

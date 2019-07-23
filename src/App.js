@@ -95,7 +95,7 @@ function Hero() {
   );
 }
 
-//TODO renders a card with info and thumbnail of a video
+//Renders a card with info and thumbnail of a video
 function VideoInfo({title, views, author, uploadTime}) {
   const styles = lightTheme;
 
@@ -105,14 +105,14 @@ function VideoInfo({title, views, author, uploadTime}) {
   }
 
   return (
-    <Box className="thumbnail_box" display="flex" width="300px"> {/* Main box that limits the size */}
+    <Box className="thumbnail_box" display="flex" width="200px"> {/* Main box that limits the size */}
       <Box display="flex" flexDirection="column" alignItems="center">  {/* Flex box wrapper */}
 
         <Box p={1} width="100%"> {/* Thumbnail image box */}
           <img className="thumbnail" width="100%" src={ThumbnailExample2} alt="Thumbnail failed to load" />
         </Box>
 
-        <Box p={1} display="flex" width="100%"> {/* Video title & view wrapper flew box */}
+        <Box id="videoTitle" p={1} display="flex" width="100%"> {/* Video title & view wrapper flew box */}
           <Box flexGrow={1}>
             {title}
           </Box>
@@ -121,7 +121,7 @@ function VideoInfo({title, views, author, uploadTime}) {
           </Box>
         </Box>
 
-        <Box p={1} display="flex" width="100%"> {/* Video author & upload time wrapper flew box */}
+        <Box id="videoAuthor" p={1} display="flex" width="100%"> {/* Video author & upload time wrapper flew box */}
           <Box flexGrow={1}>
             {author}
           </Box>
@@ -137,34 +137,21 @@ function VideoInfo({title, views, author, uploadTime}) {
 }
 
 function VideoInfoTestRow() {
+  const [spacing, setSpacing] = React.useState(2);
+
+  var videoInfoCards = [];
+  for (var i = 0; i < Math.round(((window.innerWidth - 45)/200)-1); i++) {
+    videoInfoCards.push(
+      <div class="flexItem">
+        <VideoInfo title="Test title" views="666" author="Test author" uploadTime="Yesterday"/>
+      </div>
+    );
+  }
+
   return(
-    <Grid
-      container
-      direction="row"
-      justify="center"
-      alignItems="center"
-      spacing={3}
-    >
-      {/*I know it's not pretty, it's temporary*/}
-      <Grid item xs={2}>
-        <VideoInfo title="a" author="username" views="1337" uploadTime="3 years ago" />
-      </Grid>
-      <Grid item xs={2}>
-        <VideoInfo title="a" author="longerusername" views="1337" uploadTime="3 years ago" />
-      </Grid>
-      <Grid item xs={2}>
-        <VideoInfo title="a" author="evenlongerusername" views="1337" uploadTime="3 years ago" />
-      </Grid>
-      <Grid item xs={2}>
-        <VideoInfo title="a" author="this username doesn't fit" views="1337" uploadTime="3 years ago" />
-      </Grid>
-      <Grid item xs={2}>
-        <VideoInfo title="a" author="aa" views="1337" uploadTime="3 years ago" />
-      </Grid>
-      <Grid item xs={2}>
-        <VideoInfo title="a" author="aa" views="1337" uploadTime="3 years ago" />
-      </Grid>
-    </Grid>
+    <div class="flexContainer">
+      {videoInfoCards}
+    </div>
   );
 }
 
@@ -180,10 +167,10 @@ function App() {
       <Hero />
 
       {/*Section for video information and thumbnails*/}
-      <div style={{ 'padding': '25px'}}>
-        <h3>Trending</h3>
+      <div id="contentSection" style={{ padding: '25px'}}>
+        <h3 style={{ 'padding-left': '10px'}}>Trending</h3>
         <VideoInfoTestRow />
-        <h3>Recommended</h3>
+        <h3 style={{ 'padding-left': '10px'}}>Recommended</h3>
         <VideoInfoTestRow />
       </div>
 
