@@ -47,8 +47,8 @@ const lightTheme = makeStyles({
 //TODO dark theme
 
 //Renders the navigation bar
-function Topbar() {
-  const styles = lightTheme();
+function Topbar({theme}) {
+  const styles = theme;
 
   return (
     <div className={styles.topbar}>
@@ -67,8 +67,8 @@ function Topbar() {
 }
 
 //Renders the hero section
-function Hero() {
-  const styles = lightTheme();
+function Hero({theme}) {
+  const styles = theme;
 
   return (
     /*div for the hero section of the website*/
@@ -102,8 +102,8 @@ function Hero() {
 }
 
 //Renders a card with info and thumbnail of a video
-function VideoInfo({ title, views, author, uploadTime, thumbnail, length }) {
-  const styles = lightTheme();
+function VideoInfo({ theme, title, views, author, uploadTime, thumbnail, length }) {
+  const styles = theme;
 
   if (author.length + uploadTime.length > 30) {
     var extraCharCount = 30 - 3 - author.length - uploadTime.length;
@@ -145,12 +145,13 @@ function VideoInfo({ title, views, author, uploadTime, thumbnail, length }) {
   );
 }
 
-function VideoInfoTestRow() {
+function VideoInfoTestRow({theme}) {
+
   var videoInfoCards = [];
   for (var i = 0; i < Math.round(((window.innerWidth - 35 - (10*i)) / 200) - 1); i++) {
     videoInfoCards.push(
       <div class="flexItem" key={i}>
-        <VideoInfo title="Test title" views="666" author="Test author" uploadTime="Yesterday" thumbnail={ThumbnailExample2} length="13:37" />
+        <VideoInfo theme={theme} title="Test title" views="666" author="Test author" uploadTime="Yesterday" thumbnail={ThumbnailExample2} length="13:37" />
       </div>
     );
   }
@@ -164,20 +165,22 @@ function VideoInfoTestRow() {
 
 //Main function to render the app as a whole
 function App() {
+  let currentTheme = lightTheme();
+
   return (
     //Root div for the website
     <div className="App">
 
-      <Topbar />
+      <Topbar theme={currentTheme}/>
 
-      <Hero />
+      <Hero theme={currentTheme}/>
 
       {/*Section for video information and thumbnails*/}
       <div id="contentSection" style={{ padding: '25px' }}>
         <h3 style={{ paddingLeft: '10px' }}>Trending</h3>
-        <VideoInfoTestRow />
+        <VideoInfoTestRow theme={currentTheme}/>
         <h3 style={{ paddingLeft: '10px' }}>Recommended</h3>
-        <VideoInfoTestRow />
+        <VideoInfoTestRow theme={currentTheme}/>
       </div>
 
     </div>
