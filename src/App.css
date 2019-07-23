@@ -37,14 +37,16 @@ img.thumbnail {
 
 .video_lenght {
   position: absolute;
-  right: 10px;
-  bottom: 15px;
+  right: 8px;
+  bottom: 12.5px;
   background: rgba(255, 255, 255, 0.75);
   border-radius: 5px; 
 }
 
 .thumbnail_container {
   position: relative;
+  border-radius: 5px;
+  filter: drop-shadow(0px 2px 3px black);
 }
 
 #videoTitle, #videoAuthor {
@@ -52,9 +54,7 @@ img.thumbnail {
 }
 
 .thumbnail {
-  border-radius: 5px;
   width: 100%;
-  filter: drop-shadow(0px 2px 3px black);
 }
 
 ::-webkit-scrollbar { 

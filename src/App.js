@@ -164,7 +164,6 @@ function VideoInfoTestRow() {
 
 //Main function to render the app as a whole
 function App() {
-
   return (
     //Root div for the website
     <div className="App">
