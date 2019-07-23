@@ -1,11 +1,11 @@
 * {
   font-family: 'Courier New' !important;
+  scrollbar-width: none;
 }
 
 img.thumbnail {
   border-radius: 5px;
   width: 100%;
-  filter: drop-shadow(0px 2px 10px black);
 }
 
 .thumbnail_box {
@@ -33,3 +33,7 @@ img.thumbnail {
   width: 100%;
   filter: drop-shadow(0px 2px 3px black);
 }
+
+::-webkit-scrollbar { 
+  display: none; 
+} 
