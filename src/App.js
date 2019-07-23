@@ -138,7 +138,7 @@ function VideoInfoTestRow() {
   for (var i = 0; i < Math.round(((window.innerWidth - 45)/200)-1); i++) {
     videoInfoCards.push(
       <div class="flexItem">
-        <VideoInfo />
+        <VideoInfo title="Test title" views="666" author="Test author" uploadTime="Yesterday"/>
       </div>
     );
   }
