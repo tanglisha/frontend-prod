@@ -11,6 +11,8 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { relative } from 'path';
@@ -69,7 +71,7 @@ const darkTheme = makeStyles({
     background: '#222222',
   },
   subtitle: {
-    color: '#d6d6d6',
+    color: '#b5b5b5',
   },
   defaultText: {
     color: 'white',
@@ -77,7 +79,7 @@ const darkTheme = makeStyles({
 });
 
 //Renders the navigation bar
-function Topbar({theme}) {
+function Topbar({ theme }) {
   const styles = theme;
 
   return (
@@ -94,7 +96,7 @@ function Topbar({theme}) {
             position: 'absolute',
             right: '10px',
           }}> {/* Change theme button */}
-            <button onClick={toggleTheme} className={styles.hero} id="toggle_theme">{localStorage.getItem('darkTheme') == 'false' ? 'Dark theme' : 'Light theme'}</button>
+            <button onClick={toggleTheme} className={styles.hero} id="toggle_theme">{localStorage.getItem('darkTheme') === 'false' ? 'Dark theme' : 'Light theme'}</button>
           </div>
         </Toolbar>
       </AppBar>
@@ -103,7 +105,7 @@ function Topbar({theme}) {
 }
 
 function toggleTheme() {
-  if (localStorage.getItem('darkTheme') == 'false') { // Checks if the dark theme is off
+  if (localStorage.getItem('darkTheme') === 'false') { // Checks if the dark theme is off
     localStorage.setItem('darkTheme', true); // Trun it on
   } else {
     localStorage.setItem('darkTheme', false); // Turn it off
@@ -112,7 +114,7 @@ function toggleTheme() {
 }
 
 //Renders the hero section
-function Hero({theme}) {
+function Hero({ theme }) {
   const styles = theme;
 
   return (
@@ -150,9 +152,19 @@ function Hero({theme}) {
 function VideoInfo({ theme, title, views, author, uploadTime, thumbnail, length }) {
   const styles = theme;
 
+  var displayedAuthor, displayedTitle;
+  displayedAuthor = author;
+  displayedTitle = title;
+
+  // (Sh*t code)
+  // Shortens the title / author name lenght if over a cerain amount of characters
   if (author.length + uploadTime.length > 30) {
     var extraCharCount = 30 - 3 - author.length - uploadTime.length;
-    author = author.substring(0, author.length + extraCharCount) + "...";
+    displayedAuthor = author.substring(0, author.length + extraCharCount) + "...";
+  }
+  if (title.length + (views + " views").length > 40) {
+    var extraCharCount = 40 - 3 - title.length - (views + " views").length;
+    displayedTitle = title.substring(0, title.length + extraCharCount) + "...";
   }
 
   return (
@@ -167,19 +179,23 @@ function VideoInfo({ theme, title, views, author, uploadTime, thumbnail, length 
         </Box>
 
         <Box id="videoTitle" p={1} display="flex" width="100%"> {/* Video title & view wrapper flew box */}
-          <Box flexGrow={1}>
-            {title}
-          </Box>
-          <Box className={styles.subtitle} class="subtitle" justifySelf="flex-end">
+          <Tooltip TransitionComponent={Zoom} title={title}>
+            <Box flexGrow={1}>
+              {displayedTitle}
+            </Box>
+          </Tooltip>
+          <Box className={styles.subtitle} flexShrink={0} alignSelf="flex-end" style={{fontSize: "9pt"}}>
             {views} views
           </Box>
         </Box>
 
         <Box id="videoAuthor" p={1} display="flex" width="100%"> {/* Video author & upload time wrapper flew box */}
-          <Box flexGrow={1}>
-            {author}
-          </Box>
-          <Box className={styles.subtitle} class="subtitle" justifySelf="flex-end">
+          <Tooltip TransitionComponent={Zoom} title={author}>
+            <Box flexGrow={1}>
+              {displayedAuthor}
+            </Box>
+          </Tooltip>
+          <Box className={styles.subtitle} flexShrink={0} alignSelf="flex-end" style={{fontSize: "9pt"}}>
             {uploadTime}
           </Box>
         </Box>
@@ -190,13 +206,13 @@ function VideoInfo({ theme, title, views, author, uploadTime, thumbnail, length 
   );
 }
 
-function VideoInfoTestRow({theme}) {
+function VideoInfoTestRow({ theme }) {
 
   var videoInfoCards = [];
-  for (var i = 0; i < Math.round(((window.innerWidth - 35 - (10*i)) / 200) - 1); i++) {
+  for (var i = 0; i < Math.round(((window.innerWidth - 35 - (10 * i)) / 200) - 1); i++) {
     videoInfoCards.push(
       <div class="flexItem" key={i}>
-        <VideoInfo theme={theme} title="Test title" views="666" author="Test author" uploadTime="Yesterday" thumbnail={ThumbnailExample2} length="13:37" />
+        <VideoInfo theme={theme} title="Title but ultra longer for user interface testing purposes, no video should have a title this long, I'm just testing my code" views="666" author="Long user name that should be cropped" uploadTime="Yesterday" thumbnail={ThumbnailExample2} length="13:37" />
       </div>
     );
   }
@@ -208,15 +224,15 @@ function VideoInfoTestRow({theme}) {
   );
 }
 
-function ContentSection({theme}) {
+function ContentSection({ theme }) {
   const styles = theme;
 
   return (
     <div className={styles.contentSection} id="contentSection" style={{ padding: '25px' }}>
       <h3 className={styles.defaultText} style={{ paddingLeft: '10px' }}>Trending</h3>
-      <VideoInfoTestRow theme={styles}/>
+      <VideoInfoTestRow theme={styles} />
       <h3 className={styles.defaultText} style={{ paddingLeft: '10px' }}>Recommended</h3>
-      <VideoInfoTestRow theme={styles}/>
+      <VideoInfoTestRow theme={styles} />
     </div>
   );
 }
@@ -236,11 +252,11 @@ function App() {
     //Root div for the website
     <div className="App">
 
-      <Topbar theme={currentTheme}/>
+      <Topbar theme={currentTheme} />
 
-      <Hero theme={currentTheme}/>
+      <Hero theme={currentTheme} />
 
-      <ContentSection theme={currentTheme}/>
+      <ContentSection theme={currentTheme} />
 
     </div>
   );
